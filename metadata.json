@@ -1,0 +1,8 @@
+{
+  "name": "HairCRM Pro",
+  "description": "App di gestione clienti per rappresentanti di prodotti per parrucchieri con geolocalizzazione, contabilità e pianificazione tour.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ]
+}
