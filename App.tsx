@@ -1630,6 +1630,16 @@ const App: React.FC = () => {
                            <p className="font-bold text-gray-800 text-sm">{selectedClient.address.street} {selectedClient.address.number}</p>
                            <p className="text-xs text-gray-500 mt-1">{selectedClient.address.zip} {selectedClient.address.city} ({selectedClient.address.region})</p>
                            <button onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedClient.address.street + ' ' + selectedClient.address.city)}`)} className="mt-4 w-full py-3 bg-white border border-gray-200 text-gray-800 font-black text-[10px] rounded-xl uppercase tracking-widest hover:bg-gray-100 shadow-sm">Apri in Maps</button>
+<button 
+  onClick={() => {
+    setActiveTab('add');
+    window.scrollTo(0, 0);
+  }}
+  className="mt-4 w-full py-3 bg-purple-600 text-white font-bold rounded-xl uppercase tracking-widest hover:bg-purple-700 shadow-sm"
+>
+  ✏️ MODIFICA SCHEDA
+</button>
+
                        </div>
 
                        {/* Files */}
