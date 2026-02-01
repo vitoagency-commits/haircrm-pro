@@ -65,7 +65,13 @@ const App: React.FC = () => {
 
   // Customization State
   const [backgroundImage, setBackgroundImage] = useState<string | null>(null);
-  const [cloudConfig, setCloudConfig] = useState<CloudConfig>({ provider: 'none', url: '', key: '' });
+  const [cloudConfig, setCloudConfig] = useState<CloudConfig>(() => {
+  const savedUrl = localStorage.getItem('haircrm_supabase_url') || '';
+  const savedKey = localStorage.getItem('haircrm_supabase_key') || '';
+  const savedProvider = (savedUrl && savedKey) ? 'supabase' : 'none';
+  return { provider: savedProvider, url: savedUrl, key: savedKey };
+});
+
   const [isSyncing, setIsSyncing] = useState(false);
   const [syncStatus, setSyncStatus] = useState<'idle' | 'syncing' | 'saved' | 'error'>('idle');
   
