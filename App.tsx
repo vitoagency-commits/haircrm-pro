@@ -1396,6 +1396,22 @@ const App: React.FC = () => {
                                     className="w-full bg-gray-50 p-3 rounded-xl font-bold outline-none border border-gray-100 text-sm focus:ring-2 focus:ring-purple-100"
                                 />
                              </div>
+                           </div>
+
+<button
+  onClick={() => {
+    if (confirm('Vuoi azzerare il tour corrente e crearne uno nuovo?')) {
+      setTourDate(new Date().toISOString().split('T')[0]);
+      setTourSelection([]);
+    }
+  }}
+  className="mb-4 w-full py-2 bg-orange-600 text-white font-bold rounded-xl uppercase tracking-widest hover:bg-orange-700 shadow-sm"
+>
+  🔄 RESET - Nuovo Tour
+</button>
+
+{/* Client Selection Area - REPLACED */}
+
 
                              {/* Client Selection Area - REPLACED */}
                              <div className="bg-purple-50 rounded-2xl p-6 mb-6 border border-purple-100 flex flex-col items-center justify-center text-center gap-3">
