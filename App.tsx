@@ -1464,7 +1464,45 @@ const App: React.FC = () => {
                      )}
 
                      {/* Tour List */}
-                     <div className="space-y-4">
+                                 {/* Pulsanti Eliminazione */}
+            {filteredTours.length > 0 && (
+              <div className="flex gap-3 mb-4">
+                <button
+                  onClick={async () => {
+                    if (selectedTours.length === 0) {
+                      alert('Seleziona almeno un tour da eliminare');
+                      return;
+                    }
+                    if (confirm(`Eliminare ${selectedTours.length} tour selezionati?`)) {
+                      for (const tourId of selectedTours) {
+                        await fetch(`/api/tours/${tourId}`, { method: 'DELETE' });
+                      }
+                      setTours(tours.filter(t => !selectedTours.includes(t.id)));
+                      setSelectedTours([]);
+                    }
+                  }}
+                  disabled={selectedTours.length === 0}
+                  className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 disabled:bg-gray-300"
+                >
+                  Elimina Selezionati ({selectedTours.length})
+                </button>
+                <button
+                  onClick={async () => {
+                    if (confirm('Eliminare TUTTI i tour? Questa azione non può essere annullata!')) {
+                      for (const tour of tours) {
+                        await fetch(`/api/tours/${tour.id}`, { method: 'DELETE' });
+                      }
+                      setTours([]);
+                      setSelectedTours([]);
+                    }
+                  }}
+                  className="px-4 py-2 bg-red-800 text-white rounded hover:bg-red-900"
+                >
+                  Elimina Tutti
+                </button>
+              </div>
+            )}
+<div className="space-y-4">
                         {filteredTours.map(tour => (
                              <div key={tour.id} className="bg-white p-6 rounded-3xl shadow-sm border border-gray-50 relative overflow-hidden">
                                  <div className="flex justify-between items-start mb-6 relative z-10">
