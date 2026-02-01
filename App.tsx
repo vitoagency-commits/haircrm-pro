@@ -742,13 +742,23 @@ const App: React.FC = () => {
                         className="w-full bg-gray-50 p-3 rounded-xl font-bold outline-none border border-gray-100 text-sm" 
                         placeholder="Supabase Project URL (es. https://xyz.supabase.co)"
                         value={cloudConfig.url}
-                        onChange={e => setCloudConfig({ ...cloudConfig, url: e.target.value })}
+                        onChange={(e => {
+  const newConfig = { ...cloudConfig, url: e.target.value };
+  setCloudConfig(newConfig);
+  localStorage.setItem('haircrm_supabase_url', e.target.value);
+})}
+
                     />
                     <input 
                         className="w-full bg-gray-50 p-3 rounded-xl font-bold outline-none border border-gray-100 text-sm" 
                         placeholder="Supabase Public API Key"
                         value={cloudConfig.key}
-                        onChange={e => setCloudConfig({ ...cloudConfig, key: e.target.value })}
+                        onChange={(e => {
+  const newKey = e.target.value;
+  setCloudConfig({ ...cloudConfig, key: newKey });
+  localStorage.setItem('haircrm_supabase_key', newKey);
+})}
+
                         type="password"
                     />
                     <div className="bg-blue-50 p-3 rounded-xl text-[10px] text-blue-600 font-bold leading-relaxed">
