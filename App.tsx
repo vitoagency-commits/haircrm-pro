@@ -36,6 +36,8 @@ const App: React.FC = () => {
   // --- State ---
   const [clients, setClients] = useState<Client[]>([]);
   const [tours, setTours] = useState<Tour[]>([]);
+  const [selectedTours, setSelectedTours] = useState<string[]>([]);
+
   const [searchQuery, setSearchQuery] = useState('');
   const [userLocation, setUserLocation] = useState<Coordinates | null>(null);
   const [gpsStatus, setGpsStatus] = useState<'searching' | 'active' | 'error'>('searching');
