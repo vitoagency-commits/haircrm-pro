@@ -1468,6 +1468,19 @@ const App: React.FC = () => {
                         {filteredTours.map(tour => (
                              <div key={tour.id} className="bg-white p-6 rounded-3xl shadow-sm border border-gray-50 relative overflow-hidden">
                                  <div className="flex justify-between items-start mb-6 relative z-10">
+                                   <input
+  type="checkbox"
+  checked={selectedTours.includes(tour.id)}
+  onChange={(e) => {
+    if (e.target.checked) {
+      setSelectedTours([...selectedTours, tour.id]);
+    } else {
+      setSelectedTours(selectedTours.filter(id => id !== tour.id));
+    }
+  }}
+  className="mr-3 mt-1 h-5 w-5 cursor-pointer"
+/>
+
                                      <div>
                                          <h3 className="font-black text-lg text-gray-900">{tour.name}</h3>
                                          <p className="text-xs text-gray-400 font-bold">{new Date(tour.date).toLocaleDateString()}</p>
