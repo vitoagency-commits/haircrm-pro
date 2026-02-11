@@ -1,0 +1,16 @@
+name: Keep Alive Second Project
+
+on:
+  schedule:
+    - cron: '30 0 * * *' # Gira ogni notte alle 00:30
+  workflow_dispatch:     # Permette il lancio manuale
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase API
+        run: |
+          curl -v "${{ secrets.SUPABASE_URL_2 }}/rest/v1/" \
+          -H "apikey: ${{ secrets.SUPABASE_ANON_KEY_2 }}" \
+          -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY_2 }}"
